@@ -31,7 +31,7 @@ class ButtonTextComponent extends StatelessWidget {
             text: text,
             fontSize: height-textPadding,
             textColor: textColor,
-            textWeight: FontWeight.normal,
+            textWeight: FontWeight.bold,
           ),
         ),
       ),

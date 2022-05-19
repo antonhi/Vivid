@@ -4,7 +4,7 @@ class ButtonIconComponent extends StatelessWidget {
 
   final Color buttonColor;
   final Icon icon;
-  final double height, iconPadding = 10;
+  final double height;
   final void Function() onTap;
 
   const ButtonIconComponent({Key? key,
