@@ -42,16 +42,14 @@ class ButtonIconAndTextComponent extends StatelessWidget {
       TextButtonComponent(
         text: text,
         fontSize: height-textPadding,
-        textColor: textColor,
-        textWeight: FontWeight.bold,),
+        textColor: textColor),
       icon
     ] : [
       icon,
       TextButtonComponent(
         text: text,
         fontSize: height-textPadding,
-        textColor: textColor,
-        textWeight: FontWeight.bold,)
+        textColor: textColor)
     ];
   }
 

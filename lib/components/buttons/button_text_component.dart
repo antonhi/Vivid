@@ -30,8 +30,7 @@ class ButtonTextComponent extends StatelessWidget {
           child: TextButtonComponent(
             text: text,
             fontSize: height-textPadding,
-            textColor: textColor,
-            textWeight: FontWeight.bold,
+            textColor: textColor
           ),
         ),
       ),
