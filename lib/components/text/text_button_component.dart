@@ -14,6 +14,6 @@ class TextButtonComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text, style: TextStyle(fontSize: fontSize,
-        fontWeight: FontWeight.bold, color: textColor));
+        fontWeight: FontWeight.bold, color: textColor, fontFamily: 'Lexend'));
   }
 }
