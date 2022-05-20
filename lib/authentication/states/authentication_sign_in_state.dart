@@ -1,6 +1,7 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:projectvivid/authentication/states/authentication_state.dart';
 
-class AuthenticationSignInState extends Equatable {
+class AuthenticationSignInState extends AuthenticationState {
 
   final String? _email, _password;
 
@@ -8,5 +9,14 @@ class AuthenticationSignInState extends Equatable {
 
   @override
   List<Object?> get props => [_email, _password];
+
+  String? getEmail() { return _email; }
+  String? getPassword() { return _password; }
+
+  @override
+  Widget getPage(BuildContext context) {
+    // TODO: implement getPage
+    throw UnimplementedError();
+  }
 
 }

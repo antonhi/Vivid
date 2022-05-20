@@ -5,7 +5,7 @@ class ButtonTextComponent extends StatelessWidget {
 
   final Color buttonColor, textColor;
   final String text;
-  final double height, textPadding = 10;
+  final double height, textPadding = 30;
   final void Function() onTap;
 
   const ButtonTextComponent({Key? key,
@@ -29,7 +29,7 @@ class ButtonTextComponent extends StatelessWidget {
           alignment: Alignment.center,
           child: TextButtonComponent(
             text: text,
-            fontSize: height-textPadding,
+            fontSize: height-height/1.6,
             textColor: textColor
           ),
         ),

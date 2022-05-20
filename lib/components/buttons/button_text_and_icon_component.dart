@@ -7,7 +7,7 @@ class ButtonIconAndTextComponent extends StatelessWidget {
   final String text;
   final Icon icon;
   final bool iconIsRight;
-  final double height, textPadding = 10;
+  final double height;
   final void Function() onTap;
 
   const ButtonIconAndTextComponent({Key? key,
@@ -41,14 +41,14 @@ class ButtonIconAndTextComponent extends StatelessWidget {
     return iconIsRight ? [
       TextButtonComponent(
         text: text,
-        fontSize: height-textPadding,
+        fontSize: height-height/1.6,
         textColor: textColor),
       icon
     ] : [
       icon,
       TextButtonComponent(
         text: text,
-        fontSize: height-textPadding,
+        fontSize: height-height/1.6,
         textColor: textColor)
     ];
   }

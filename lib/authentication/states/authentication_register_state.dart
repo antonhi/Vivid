@@ -1,3 +1,4 @@
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:projectvivid/authentication/states/authentication_state.dart';
 
 class AuthenticationRegisterState extends AuthenticationState {
@@ -12,5 +13,11 @@ class AuthenticationRegisterState extends AuthenticationState {
   String? getEmail() { return _email; }
   String? getPassword() { return _password; }
   String? getUsername() { return _username; }
+
+  @override
+  Widget getPage(BuildContext context) {
+    // TODO: implement getPage
+    throw UnimplementedError();
+  }
 
 }
