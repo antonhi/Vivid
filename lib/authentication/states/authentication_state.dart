@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
-abstract class AuthenticationState extends Equatable {
-  Widget getPage(BuildContext context);
+class AuthenticationState extends Equatable {
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+
 }

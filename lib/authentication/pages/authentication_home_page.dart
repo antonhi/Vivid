@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projectvivid/authentication/controllers/authentication_controller.dart';
-import 'package:projectvivid/authentication/states/authentication_home_state.dart';
-import 'package:projectvivid/authentication/states/authentication_state.dart';
+import 'package:projectvivid/authentication/pages/authentication_register_page.dart';
+import 'package:projectvivid/authentication/pages/authentication_sign_in_page.dart';
 import 'package:projectvivid/components/buttons/button_text_component.dart';
 import 'package:projectvivid/configuration/colors/background_color_configuration.dart';
 import 'package:projectvivid/configuration/colors/button_color_configuration.dart';
@@ -16,35 +13,41 @@ class AuthenticationHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticationController, AuthenticationState>(builder: (context, state) {
-      if (state is AuthenticationHomeState) {
-        return Scaffold(
-          backgroundColor: BackgroundColorConfiguration.darkModePrimary,
-          body: Center(
-            child: SizedBox(
-              width: 200,
-              child: Column(
-                children: [
-                  ButtonTextComponent(
-                    text: 'Sign In',
-                    height: 50,
-                    buttonColor: ButtonColorConfiguration.accent,
-                    textColor: Colors.white,
-                    onTap: () {},
-                  ),
-                  ButtonTextComponent(
-                    text: 'Register',
-                    height: 50,
-                    buttonColor: ButtonColorConfiguration.darkModePrimary,
-                    textColor: TextColorConfiguration.dark,
-                    onTap: () {},
-                  )
-                ],
+    return Scaffold(
+      backgroundColor: BackgroundColorConfiguration.darkModePrimary,
+      body: Center(
+        child: SizedBox(
+          width: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ButtonTextComponent(
+                text: 'Sign In',
+                height: 50,
+                buttonColor: ButtonColorConfiguration.accent,
+                textColor: Colors.white,
+                onTap: () { _navigateToSignInPage(context); },
               ),
-            ),
+              const SizedBox(height: 30,),
+              ButtonTextComponent(
+                text: 'Register',
+                height: 50,
+                buttonColor: ButtonColorConfiguration.darkModePrimary,
+                textColor: TextColorConfiguration.dark,
+                onTap: () { _navigateToRegisterPage(context); },
+              )
+            ],
           ),
-        );
-      } else { return Container(); }
-    });
+        ),
+      ),
+    );
+  }
+
+  void _navigateToSignInPage(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const AuthenticationSignInPage()));
+  }
+
+  void _navigateToRegisterPage(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const AuthenticationRegisterPage()));
   }
 }

@@ -5,4 +5,6 @@ class AuthenticationController extends Cubit<AuthenticationState> {
 
   AuthenticationController(AuthenticationState initialState) : super(initialState);
 
+
+
 }
