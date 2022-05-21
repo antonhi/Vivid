@@ -47,7 +47,7 @@ class AuthenticationHomePage extends StatelessWidget {
   void _navigateToSignInPage(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return BlocProvider<AuthenticationController>(
-        create: (context) => AuthenticationController(const AuthenticationState(null)),
+        create: (context) => AuthenticationController(const AuthenticationState(null, false)),
         child: const AuthenticationSignInPage()
       );
     }));
@@ -56,7 +56,7 @@ class AuthenticationHomePage extends StatelessWidget {
   void _navigateToRegisterPage(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return BlocProvider<AuthenticationController>(
-          create: (context) => AuthenticationController(const AuthenticationState(null)),
+          create: (context) => AuthenticationController(const AuthenticationState(null, false)),
           child: const AuthenticationRegisterPage()
       );
     }));

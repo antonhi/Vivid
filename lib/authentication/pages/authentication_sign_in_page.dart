@@ -44,8 +44,11 @@ class _AuthenticationSignInPageState extends State<AuthenticationSignInPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                state.getError() == null ? const SizedBox(height: 0,) :
-                const ErrorNotificationComponent(text: 'Testing', height: 50),
+                AnimatedSwitcher(duration: const Duration(milliseconds: 300),
+                  child: state.getError() == null ? const SizedBox(height: 0,) :
+                  const ErrorNotificationComponent(text: 'Testing', height: 50),
+                  switchInCurve: Curves.easeIn,
+                  switchOutCurve: Curves.easeOut,),
                 const TextTitleComponent(textColor: AppColorConfiguration.white, text: 'Sign In'),
                 const SizedBox(height: 5,),
                 const TextLargeComponent(text: 'It\'s Good To See You', textColor: AppColorConfiguration.secondary),
@@ -80,7 +83,8 @@ class _AuthenticationSignInPageState extends State<AuthenticationSignInPage> {
                         text: 'Next',
                         height: 40,
                         onTap: () => _inputGalleryService.getCurrentGalleryElement() == 0 ?
-                          _nextElementGallery() : BlocProvider.of<AuthenticationController>(context).update('Testing error'),
+                          _nextElementGallery() :
+                        BlocProvider.of<AuthenticationController>(context).update('Testing error', state.isAcknowledged()),
                         icon: const Icon(Icons.arrow_forward_ios, color: AppColorConfiguration.white, size: 20,),
                         iconIsRight: true)
                   ],

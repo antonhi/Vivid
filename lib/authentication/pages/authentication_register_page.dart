@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projectvivid/components/buttons/button_text_component.dart';
+import 'package:projectvivid/components/form/form_acknowledge_component.dart';
+import 'package:projectvivid/components/text/text_button_component.dart';
 import 'package:projectvivid/configuration/colors/app_color_configuration.dart';
 
 import '../../app/services/app_gallery_service.dart';
@@ -11,6 +14,7 @@ import '../../components/text/text_large_component.dart';
 import '../../components/text/text_title_component.dart';
 import '../controllers/authentication_controller.dart';
 import '../states/authentication_state.dart';
+import 'authentication_sign_in_page.dart';
 
 class AuthenticationRegisterPage extends StatefulWidget {
   const AuthenticationRegisterPage({Key? key}) : super(key: key);
@@ -29,7 +33,7 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
   void initState() {
     _generateControllers();
     _generateFocusNodes();
-    _inputGalleryService.setMaxElements(3);
+    _inputGalleryService.setMaxElements(4);
     super.initState();
   }
 
@@ -46,8 +50,11 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                state.getError() == null ? const SizedBox(height: 0,) :
-                const ErrorNotificationComponent(text: 'Testing', height: 50),
+                AnimatedSwitcher(duration: const Duration(milliseconds: 300),
+                  child: state.getError() == null ? const SizedBox(height: 0,) :
+                  const ErrorNotificationComponent(text: 'Testing', height: 50),
+                  switchInCurve: Curves.easeIn,
+                  switchOutCurve: Curves.easeOut,),
                 const TextTitleComponent(textColor: AppColorConfiguration.white, text: 'Register'),
                 const SizedBox(height: 5,),
                 const TextLargeComponent(text: 'Welcome', textColor: AppColorConfiguration.secondary),
@@ -56,7 +63,7 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
                   height: 60,
                   child: GalleryHorizontalComponent(
                       elementWidth: navigationWidth,
-                      elements: _getFields(),
+                      elements: _getFields(state.getError(), state.isAcknowledged()),
                       controller: _inputGalleryService.getGalleryController(),
                       onPageChanged: (int index) {
                         _inputGalleryService.handleSwipe(index);
@@ -82,10 +89,21 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
                         text: 'Next',
                         height: 40,
                         onTap: () => !_inputGalleryService.atMax() ?
-                        _nextElementGallery() : BlocProvider.of<AuthenticationController>(context).update('Testing error'),
+                          _nextElementGallery() :
+                          BlocProvider.of<AuthenticationController>(context).update('Testing error', state.isAcknowledged()),
                         icon: const Icon(Icons.arrow_forward_ios, color: AppColorConfiguration.white, size: 20,),
                         iconIsRight: true)
                   ],
+                ),
+                const SizedBox(height: 10,),
+                SizedBox(
+                  width: navigationWidth/3,
+                  child: ButtonTextComponent(
+                      buttonColor: AppColorConfiguration.tertiary,
+                      textColor: AppColorConfiguration.white,
+                      text: 'Sign In',
+                      height: 40,
+                      onTap: () => _navigateToSignIn(context)),
                 )
               ],
             ),
@@ -121,7 +139,7 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
     _textEditingFocusNodes['username'] = FocusNode();
   }
 
-  List<Widget> _getFields() {
+  List<Widget> _getFields(String? error, bool acknowledged) {
     List<Widget> fields = [];
     for (String placeholder in _textEditingControllers.keys) {
       fields.add(
@@ -131,19 +149,27 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
             placeholder: placeholder,
             action: placeholder == 'username' ? TextInputAction.done : TextInputAction.next,
             controller: _textEditingControllers[placeholder] ?? TextEditingController(),
-            onSubmitted: (String text) => placeholder == 'email' ? _nextElementGallery() : {},));
+            onSubmitted: (String text) => _nextElementGallery(),));
     }
+    fields.add(
+        FormAcknowledgeWidget(
+          text: 'I accept the Terms and Conditions',
+          termsAndConditionsAcknowledged: acknowledged,
+          onChange: (bool? status) =>
+              BlocProvider.of<AuthenticationController>(context).update(error, status ?? false)
+        )
+    );
     return fields;
   }
 
   void _nextElementGallery() {
     _inputGalleryService.goToNextElement();
-    _requestPasswordFocus();
+    _handleFocus();
   }
 
   void _previousElementGallery() {
     _inputGalleryService.goToPreviousElement();
-    _requestEmailFocus();
+    _handleFocus();
   }
 
   void _handleFocus() {
@@ -156,6 +182,9 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
         break;
       case 2:
         _requestUsernameFocus();
+        break;
+      case 3:
+        _closeUsernameFocus();
     }
   }
 
@@ -171,8 +200,21 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
     _textEditingFocusNodes['username']?.requestFocus();
   }
 
+  void _closeUsernameFocus() {
+    _textEditingFocusNodes['username']?.unfocus();
+  }
+
   void _navigateToHome(BuildContext context) {
     if (Navigator.canPop(context)) Navigator.pop(context);
+  }
+  
+  void _navigateToSignIn(BuildContext context) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) {
+      return BlocProvider<AuthenticationController>(
+          create: (context) => AuthenticationController(const AuthenticationState(null, false)),
+          child: const AuthenticationSignInPage()
+      );
+    }));
   }
 }
 
