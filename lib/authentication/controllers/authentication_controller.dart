@@ -5,6 +5,8 @@ class AuthenticationController extends Cubit<AuthenticationState> {
 
   AuthenticationController(AuthenticationState initialState) : super(initialState);
 
-
+  void update(String? error) {
+    emit(AuthenticationState(error));
+  }
 
 }
