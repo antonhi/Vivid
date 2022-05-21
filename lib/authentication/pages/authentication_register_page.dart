@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projectvivid/components/buttons/button_text_component.dart';
 import 'package:projectvivid/components/form/form_acknowledge_component.dart';
-import 'package:projectvivid/components/text/text_button_component.dart';
 import 'package:projectvivid/configuration/colors/app_color_configuration.dart';
 
 import '../../app/services/app_gallery_service.dart';
@@ -201,7 +200,9 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
   }
 
   void _closeUsernameFocus() {
-    _textEditingFocusNodes['username']?.unfocus();
+    if (_textEditingFocusNodes['username'] != null &&_textEditingFocusNodes['username']!.hasPrimaryFocus) {
+      _textEditingFocusNodes['username']?.unfocus();
+    }
   }
 
   void _navigateToHome(BuildContext context) {
