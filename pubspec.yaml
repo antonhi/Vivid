@@ -37,6 +37,9 @@ dependencies:
   bloc:
   flutter_bloc:
   equatable:
+  http: ^0.13.4
+  firebase_core: ^1.17.1
+  firebase_auth: ^3.3.19
 
 
 

@@ -7,6 +7,8 @@ import 'package:projectvivid/authentication/states/authentication_state.dart';
 import 'package:projectvivid/components/buttons/button_text_component.dart';
 import 'package:projectvivid/configuration/colors/app_color_configuration.dart';
 
+import '../services/authentication_register_service.dart';
+
 class AuthenticationHomePage extends StatelessWidget {
 
   const AuthenticationHomePage({Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class AuthenticationHomePage extends StatelessWidget {
                 height: 50,
                 buttonColor: AppColorConfiguration.accent,
                 textColor: AppColorConfiguration.white,
-                onTap: () { _navigateToSignInPage(context); },
+                onTap: () async { _navigateToSignInPage(context); },
               ),
               const SizedBox(height: 30,),
               ButtonTextComponent(

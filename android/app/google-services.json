@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "259247542084",
+    "project_id": "project-vivid",
+    "storage_bucket": "project-vivid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259247542084:android:9eeb500e9a523ac630d111",
+        "android_client_info": {
+          "package_name": "com.example.projectvivid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259247542084-qafdkac10m760t7u9j4asnau9lh0901v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi8DNH1q5rcirAR33QSDOYjTCuOv8jrLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259247542084-qafdkac10m760t7u9j4asnau9lh0901v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
