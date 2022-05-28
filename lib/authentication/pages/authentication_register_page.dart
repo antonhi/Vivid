@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projectvivid/app/controllers/app_controller.dart';
 import 'package:projectvivid/components/buttons/button_text_component.dart';
 import 'package:projectvivid/components/form/form_acknowledge_component.dart';
 import 'package:projectvivid/configuration/colors/app_color_configuration.dart';
@@ -210,12 +211,13 @@ class _AuthenticationRegisterPageState extends State<AuthenticationRegisterPage>
   }
   
   void _navigateToSignIn(BuildContext context) {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) {
+    BlocProvider.of<AppController>(context).showFeed();
+    /*Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) {
       return BlocProvider<AuthenticationController>(
           create: (context) => AuthenticationController(const AuthenticationState(null, false)),
           child: const AuthenticationSignInPage()
       );
-    }));
+    }));*/
   }
 }
 
