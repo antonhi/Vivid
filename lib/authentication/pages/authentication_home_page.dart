@@ -25,19 +25,27 @@ class AuthenticationHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ButtonTextComponent(
-                text: 'Sign In',
+                text: 'Profile',
                 height: 50,
                 buttonColor: AppColorConfiguration.accent,
                 textColor: AppColorConfiguration.white,
-                onTap: () { _navigateToSignInPage(context); },
+                onTap: () { BlocProvider.of<AppController>(context).showProfile(); },
               ),
               const SizedBox(height: 30,),
               ButtonTextComponent(
-                text: 'Register',
+                text: 'Feed',
                 height: 50,
                 buttonColor: AppColorConfiguration.white,
                 textColor: AppColorConfiguration.dark,
                 onTap: () { BlocProvider.of<AppController>(context).showFeed(); },
+              ),
+              const SizedBox(height: 30,),
+              ButtonTextComponent(
+                text: 'Inbox',
+                height: 50,
+                buttonColor: AppColorConfiguration.white,
+                textColor: AppColorConfiguration.dark,
+                onTap: () { BlocProvider.of<AppController>(context).showInbox(); },
               )
             ],
           ),
