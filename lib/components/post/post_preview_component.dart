@@ -28,7 +28,7 @@ class _PostPreviewComponentState extends State<PostPreviewComponent> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ClipRRect(borderRadius: BorderRadius.circular(10),
+        ClipRRect(borderRadius: BorderRadius.circular(5),
             child: PostVideo(post: widget.post, width: widget.width, isInView: widget.isInView)),
         const SizedBox(height: 10,),
         SizedBox(
@@ -43,7 +43,7 @@ class _PostPreviewComponentState extends State<PostPreviewComponent> {
                     text: '123', 
                     height: 50,
                     onTap: () => {}, 
-                    icon: Icon(Icons.comment_rounded, size: 25, color: AppColorConfiguration.white,),
+                    icon: Icon(Icons.comment, size: 25, color: AppColorConfiguration.white,),
                     iconIsAbove: true),
                 ProfilePictureAndUsernameComponent(user: UserModel(username: 'anton'), height: 40),
                 ButtonIconAndTextVerticalComponent(
@@ -52,7 +52,7 @@ class _PostPreviewComponentState extends State<PostPreviewComponent> {
                     text: '50',
                     height: 50,
                     onTap: () => {},
-                    icon: Icon(Icons.heart_broken, size: 25, color: AppColorConfiguration.white,),
+                    icon: Icon(Icons.thumb_up_alt_outlined, size: 25, color: AppColorConfiguration.white,),
                     iconIsAbove: true)
               ],
             ),

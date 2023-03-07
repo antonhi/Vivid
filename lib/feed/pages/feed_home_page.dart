@@ -38,12 +38,12 @@ class _FeedHomePageState extends State<FeedHomePage> {
                       const SizedBox(height: 10,),
                       SearchBarComponent(
                           controller: TextEditingController(),
-                          placeholder: 'search games, creators, more',
+                          placeholder: 'Search makes, models...',
                           height: 60,
                           onTap: () => {},
                           onSubmit: (String submitted) => {},
                           onChanged: (String submitted) => {},
-                          backgroundColor: AppColorConfiguration.tertiary),
+                          backgroundColor: AppColorConfiguration.quaternary),
                       const SizedBox(height: 10,),
                       NavigationBarComponent(
                           width: navigationWidth*0.9,
